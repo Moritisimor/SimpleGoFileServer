@@ -1,4 +1,4 @@
-# SimpleGoFileServer
+# Simple Go File Server
 A very simple program written in go for hosting static files.
 
 ## Usage
