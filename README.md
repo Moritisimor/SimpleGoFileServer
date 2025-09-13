@@ -1,12 +1,14 @@
 # Simple Go File Server
 A very simple program written in go for hosting static files.
 
-## Usage
+## How to launch
 To start the server you either need the go file of the server along with go installed or the compiled binary file.
 
+By default, without any arguments given, the Server listens on all interfaces and on port 8000,
+so you can theoretically just double click the .exe file (or whatever format your OS uses) and it would run until the terminal window is closed.
 
 ### Basic syntax:
-```console
+```
 SimpleGoFileServer <Port (Integer)> <Localhost (Boolean)>
 ```
 
@@ -29,7 +31,10 @@ SimpleGoFileServer 7000 false
 #### 4: Got more arguments than necessary.
 
 ## How to use
-To access the files in the “files” directory, assuming the server runs on 192.168.1.10 on all interfaces, you can either download them from your terminal with the cURL command like this:
+To make files available, you simply put them in the folder named "files" and they will be available there.
+
+To access the files in the “files” directory, assuming the server runs on 192.168.1.10 on all interfaces, 
+you can either download them from your terminal with the cURL command like this:
 
 ```console
 curl http://192.168.1.10:8000/Text.txt
