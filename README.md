@@ -10,6 +10,10 @@ Then, cd into the newly cloned repository's directory, where the source code res
 ```console
 cd SimpleGoFileServer/SimpleGoFileServer
 ```
+Since the program servers files on the 'files' folder by default, you should create such a folder like this:
+```console
+mkdir files
+```
 And finally compile it with the Go compiler:
 ```console
 go build .
