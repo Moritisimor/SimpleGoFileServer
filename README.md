@@ -10,7 +10,7 @@ Then, cd into the newly cloned repository's directory, where the source code res
 ```console
 cd SimpleGoFileServer/SimpleGoFileServer
 ```
-Since the program servers files on the 'files' folder by default, you should create such a folder like this:
+Since the program serves files in the 'files' folder by default, you should create such a folder like this:
 ```console
 mkdir files
 ```
