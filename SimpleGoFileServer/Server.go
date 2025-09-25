@@ -47,13 +47,17 @@ func changeDir(checkee string, directory *string) {
 		os.Exit(5)
 	}
 
-	_, err := os.Stat(checkee)
-	if err != nil {
-		fmt.Println("[ ERR ] The specified directory does not exist.")
-		os.Exit(6)
-	}
+	checkDirExists(checkee)
 
 	*directory = normalize(checkee)
+}
+
+func checkDirExists(directory string) {
+	_, err := os.Stat(directory)
+	if err != nil {
+		fmt.Printf("[ ERR ] The specified directory does not exist: %s\n", directory)
+		os.Exit(6)
+	}
 }
 
 func normalize(unnormalString string) string {
@@ -67,16 +71,19 @@ func main() {
 
 	switch len(os.Args) {
 	case 1:
+		checkDirExists("files")
 		fmt.Println("[ INFO ] No args, standarding port to 8000, serving files in 'files' directory and " +
 			"listening on all interfaces.")
 
 	case 2:
+		checkDirExists("files")
 		changePort(os.Args[1], &port)
 
 		fmt.Printf("[ INFO ] Port defined, serving files in 'files' directory and listening on "+
 			"port %s on all interfaces.\n", port)
 
 	case 3:
+		checkDirExists("files")
 		changePort(os.Args[1], &port)
 		changeHost(os.Args[2], &host)
 
