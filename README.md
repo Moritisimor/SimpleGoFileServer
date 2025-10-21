@@ -8,7 +8,7 @@ git clone https://github.com/Moritisimor/SimpleGoFileServer
 ```
 Then, cd into the newly cloned repository's directory, where the source code resides:
 ```console
-cd SimpleGoFileServer/src
+cd SimpleGoFileServer/SimpleGoFileServer
 ```
 Since the program serves files in the 'files' folder by default, you should create such a folder like this:
 ```console
@@ -18,7 +18,8 @@ And finally compile it with the Go compiler:
 ```console
 go build .
 ```
-Depending on your platform, you can then launch the Server by just double-clicking the compiled binary file or typing the following in your terminal:
+Depending on your platform, you can then launch the Server by just double-clicking the compiled binary file 
+or typing the following in your terminal:
 ```console
 ./SimpleGoFileServer
 ```
@@ -33,24 +34,24 @@ It is possible to change the port, host and folder the server serves files from.
 
 ### Basic syntax:
 ```
-SimpleGoFileServer --port <Port Number> --host <Host> --dir <Directory>
+SimpleGoFileServer -p <Port Number> -h <Host> -d <Directory>
 ```
 
 (Note: Boolean means true or false.)
 ## Examples
 If you want to run the server on port 8000 and only on localhost, it would look like this:
 ```console
-SimpleGoFileServer --port 8000 --host localhost
+SimpleGoFileServer -p 8000 -h localhost
 ```
 
 If you want to run the server on port 7000 and listen on all interfaces, it would look like this:
 ```console
-SimpleGoFileServer --port 7000 --host 0.0.0.0
+SimpleGoFileServer -p 7000 -h 0.0.0.0
 ```
 
 If you want to specify the directory where files are served from, as well, it would look like this:
 ```console
-SimpleGoFileServer --port 7000 --host 0.0.0.0 --dir exampleDirectory
+SimpleGoFileServer -p 7000 -h 0.0.0.0 -d exampleDirectory
 ```
 File paths are relative to the directory where the server is launched from. Using absolute paths is not recommended.
 
@@ -59,17 +60,12 @@ File paths are relative to the directory where the server is launched from. Usin
 
 2: The selected port is not in the valid range of available ports.
 
-3: The second Argument got a value which is not true or false.
+3: Selected Directory is empty.
 
-4: Got more arguments than necessary.
-
-5: The third Argument is empty or consists of only whitespaces.
-
-6: The Specified folder does not exist.
+4: Selected Directory does not exist.
 
 ## How to use
-To share files, you put them in the folder named "files" and they will be available there. 
-
+To share files, you put them in the folder named "files" and they will be available there.
 Alternatively, you can also specify a different folder to serve files from. This option is the third argument.
 
 To access the files in the “files” directory, assuming the server runs on 192.168.1.10 on all interfaces, 

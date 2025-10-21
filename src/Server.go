@@ -30,37 +30,33 @@ func changePort(checkee string, port *string) {
 }
 
 func changeDir(checkee string, directory *string) {
-	if normalize(checkee) == "" {
+	if checkee == "" {
 		fmt.Println("[ ERR ] Directory may not be empty.")
-		os.Exit(5)
+		os.Exit(3)
 	}
 
 	checkDirExists(checkee)
 
-	*directory = normalize(checkee)
+	*directory = strings.TrimSpace(checkee)
 }
 
 func checkDirExists(directory string) {
 	_, err := os.Stat(directory)
 	if err != nil {
 		fmt.Printf("[ ERR ] The specified directory does not exist: %s\n", directory)
-		os.Exit(6)
+		os.Exit(4)
 	}
-}
-
-func normalize(unnormalString string) string {
-	return strings.ToLower(strings.TrimSpace(unnormalString))
 }
 
 func main() {
 	port := "8000"
-	host := "0.0.0.0:"
+	host := "0.0.0.0"
 	directory := "files"
 
 	for index, arg := range os.Args {
-		if strings.HasPrefix(arg, "--") {
+		if strings.HasPrefix(arg, "-") {
 			flag := os.Args[index]
-			if len(os.Args) < index+1 {
+			if len(os.Args) < index + 2 {
 				fmt.Printf("Expected value after flag: %s\n", flag)
 				return
 			}
@@ -70,23 +66,24 @@ func main() {
 				fmt.Printf("Unknown flag: %s\n", flag)
 				return
 
-			case "--port":
-				changePort(os.Args[index+1], &port)
+			case "--port", "-p":
+				changePort(os.Args[index + 1], &port)
 
-			case "--host":
-				host = os.Args[index+1]
+			case "--host", "-h":
+				host = os.Args[index + 1]
 
-			case "--dir":
-				changeDir(os.Args[index+1], &directory)
+			case "--dir", "-d":
+				changeDir(os.Args[index + 1], &directory)
 			}
 		}
 	}
 
 	fmt.Println("[ INFO ] Starting Server...")
-	fmt.Printf("[ INFO ] Listening on %s\n", host+":"+port)
+	fmt.Printf("[ INFO ] Listening on %s\n", host + ":" + port)
+	fmt.Println("[ INFO ] Server available on http://localhost:" + port)
 	http.Handle("/", http.FileServer(http.Dir(directory)))
 	fmt.Printf("[ INFO ] Files are available in the '%s' directory.\n", directory)
-	listeningErr := http.ListenAndServe(host+":"+port, nil)
+	listeningErr := http.ListenAndServe(host + ":" + port, nil)
 
 	if listeningErr != nil {
 		fmt.Printf("[ ERR ] Something went wrong and the server will shut down now.\nError: %s\n", listeningErr.Error())
