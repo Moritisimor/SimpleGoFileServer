@@ -9,8 +9,6 @@ import (
 	"SimpleGoFileServer/colorprint"
 )
 
-// Check if a string is worthy of being a port number, and, if so, changes the original string to be that port number
-
 func main() {
 	port := "8000"
 	host := "0.0.0.0"
