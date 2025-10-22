@@ -55,15 +55,6 @@ SimpleGoFileServer -p 7000 -h 0.0.0.0 -d exampleDirectory
 ```
 File paths are relative to the directory where the server is launched from. Using absolute paths is not recommended.
 
-## Error codes and their meanings
-1: The selected port is not a number.
-
-2: The selected port is not in the valid range of available ports.
-
-3: Selected Directory is empty.
-
-4: Selected Directory does not exist.
-
 ## How to use
 To share files, you put them in the folder named "files" and they will be available there.
 Alternatively, you can also specify a different folder to serve files from. This option is the third argument.
