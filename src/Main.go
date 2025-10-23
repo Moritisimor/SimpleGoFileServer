@@ -43,7 +43,7 @@ func main() {
 	colorprint.PrintBlue(fmt.Sprintf("[ INFO ] Listening on http://%s:%s\n", host, port))
 	http.Handle("/", http.FileServer(http.Dir(directory)))
 
-	if !servfuncs.DirExists("files") {
+	if !servfuncs.DirExists(directory) {
 		colorprint.PrintRed("[ ERR ] 'files' is not a valid directory!\n")
 		return
 	}
